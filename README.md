@@ -43,9 +43,9 @@ The websocket API is compatible with the [official implementation](https://githu
 ### HTTP API
 
 - Register a client: `GET /v1/register`
-- Get DG-LAB App binding qrcode: `GET /v1/bind`
-- Send a command to all bound devices: `POST /v1/command`
-- Heartbeat: `GET /v1/heartbeat`
+- Get DG-LAB App binding qrcode: `GET /v1/bind?clientId=<client ID>`
+- Send a command to all bound devices: `GET /v1/command?clientId=<client ID>&message=<message field in official protocol>`
+- Heartbeat: `GET /v1/heartbeat?clientId=<client ID>`
 
 ## License
 
