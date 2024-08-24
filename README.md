@@ -1,6 +1,6 @@
 # DG-citrus
 
-A server to act as a bridge between the [DG-LAB App](https://www.dungeon-lab.com/) and the third party controller clients.
+A server to act as a bridge between the [DG-LAB App](https://www.dungeon-lab.com/) and third party controller clients.
 
 Compared to the [official implementation](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE), this implementation has the following advantages:
 
