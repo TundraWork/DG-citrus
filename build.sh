@@ -1,0 +1,6 @@
+#!/bin/bash
+BIN_FILENAME=citrus_server
+mkdir -p output/bin
+cp script/* output 2>/dev/null
+chmod +x output/bootstrap.sh
+go build -o output/bin/${BIN_FILENAME}
