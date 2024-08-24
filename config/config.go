@@ -15,6 +15,7 @@ var (
 
 type Config struct {
 	HostName              string `yaml:"HostName"`
+	Port                  string `yaml:"Port"`
 	AllowInsecureClientId bool   `yaml:"AllowInsecureClientId"`
 }
 

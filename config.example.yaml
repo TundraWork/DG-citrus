@@ -1,0 +1,3 @@
+HostName: "localhost"
+Port: 6789
+AllowInsecureClientId: true

@@ -33,10 +33,11 @@ func sendDGAppBindingCode(bodyWriter io.Writer, host string, secureId ClientSecu
 	if err != nil {
 		return err
 	}
-	writer := standard.NewWithWriter(newQrcodeWriteCloser(bodyWriter), []standard.ImageOption{
+	writer := standard.NewWithWriter(
+		newQrcodeWriteCloser(bodyWriter),
 		standard.WithBgColor(colornames.Lightpink),
 		standard.WithCircleShape(),
-	}...)
+	)
 	err = qrc.Save(writer)
 	if err != nil {
 		return err
