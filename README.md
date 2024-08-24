@@ -38,7 +38,7 @@ cp config.example.json config.json
 The websocket API is compatible with the [official implementation](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE).
 
 - DG-LAB App connections: `wss://<hostname>:<port>`
-- Third party controller client connections: `ws://<hostname>:<port>/v1/ws`
+- Third party controller client connections: `wss://<hostname>:<port>/v1/ws`
 
 ### HTTP API
 
