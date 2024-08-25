@@ -64,7 +64,7 @@ func HTTPBindingQrcode(ctx context.Context, c *app.RequestContext) {
 		fail(ctx, c, "HTTPCommand", fmt.Sprintf("Failed to get client ID: %v", err))
 		return
 	}
-	err = sendDGAppBindingCode(c.Response.BodyWriter(), config.Conf.HostName, secureId)
+	err = sendDGAppBindingCode(c.Response.BodyWriter(), secureId)
 	if err != nil {
 		fail(ctx, c, "HTTPBindingQrcode", fmt.Sprintf("Failed to generate DG-LAB app bindings code: %v", err))
 		return

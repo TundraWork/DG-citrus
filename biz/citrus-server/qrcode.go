@@ -29,14 +29,14 @@ func newQrcodeWriteCloser(w io.Writer) io.WriteCloser {
 	return &qrcodeWriteCloser{Writer: w}
 }
 
-func sendDGAppBindingCode(bodyWriter io.Writer, host string, secureId ClientSecureId) error {
+func sendDGAppBindingCode(bodyWriter io.Writer, secureId ClientSecureId) error {
 	var protocol string
 	if config.Conf.UseSecureWebsocket {
 		protocol = "wss"
 	} else {
 		protocol = "ws"
 	}
-	payload := fmt.Sprintf("%s#%s#%s://%s/app/%s", DGAppWebsiteLink, DGAppWebsocketTag, protocol, host, secureId)
+	payload := fmt.Sprintf("%s#%s#%s://%s:%s/app/%s", DGAppWebsiteLink, DGAppWebsocketTag, protocol, config.Conf.HostName, config.Conf.Port, secureId)
 	qrc, err := qrcode.New(payload)
 	if err != nil {
 		return err

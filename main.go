@@ -8,12 +8,12 @@ import (
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts(config.Conf.Port))
+	config.Init()
+
+	h := server.Default(server.WithHostPorts(":" + config.Conf.Port))
 	// https://github.com/cloudwego/hertz/issues/121
 	h.NoHijackConnPool = true
 	h.LoadHTMLGlob("resources/views/*")
-	config.Init()
-
 	register(h)
 	h.Spin()
 }

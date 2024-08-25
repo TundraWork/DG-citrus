@@ -6,7 +6,6 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/google/uuid"
-
 	"github.com/hertz-contrib/websocket"
 )
 
