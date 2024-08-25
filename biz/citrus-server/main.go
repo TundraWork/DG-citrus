@@ -211,7 +211,7 @@ func (server *CitrusServer) unbindClientFromAllBindings(secureId ClientSecureId)
 		return fmt.Errorf("unbindClientFromAllBindings: Client with secure ID %s not found", secureId)
 	}
 
-	for binding, _ := range client.bindings {
+	for binding := range client.bindings {
 		peerClient, ok := server.clients.secureMapping[binding]
 		if !ok {
 			hlog.Errorf("unbindClientFromAllBindings: Client with secure ID %s not found", binding)
@@ -234,7 +234,7 @@ func (server *CitrusServer) getClientBindings(secureId ClientSecureId) ([]Citrus
 	}
 
 	bindings := make([]CitrusClient, 0)
-	for bindingId, _ := range client.bindings {
+	for bindingId := range client.bindings {
 		binding, ok := server.clients.secureMapping[bindingId]
 		if !ok {
 			hlog.Errorf("getClientBindings: Binding with secure ID %s not found", bindingId)
