@@ -9,9 +9,9 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
-	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/hertz-contrib/websocket"
+	"github.com/tundrawork/DG-citrus/biz/handler"
 	"github.com/tundrawork/DG-citrus/config"
 	"golang.org/x/crypto/blake2b"
 )
@@ -21,11 +21,11 @@ var (
 	citrusServer   = NewCitrusServer()
 )
 
-func RootHandler(ctx context.Context, c *app.RequestContext) {
+func DGAppHandler(ctx context.Context, c *app.RequestContext) {
 	err := wsConnectionHandler(ctx, c, ClientTypeDGApp)
 	if err != nil {
 		hlog.CtxInfof(ctx, "RootHandler: try to handle connection as websocket failed: %v", err)
-		wsUpgradeFailed(c)
+		wsUpgradeFailed(ctx, c)
 	}
 }
 
@@ -33,15 +33,8 @@ func ThirdPartyWSHandler(ctx context.Context, c *app.RequestContext) {
 	err := wsConnectionHandler(ctx, c, ClientTypeThirdPartyWS)
 	if err != nil {
 		hlog.CtxInfof(ctx, "RootHandler: try to handle connection as websocket failed: %v", err)
-		wsUpgradeFailed(c)
+		wsUpgradeFailed(ctx, c)
 	}
-}
-
-func wsUpgradeFailed(c *app.RequestContext) {
-	c.Response.ResetBody()
-	c.HTML(http.StatusOK, "index.tmpl", utils.H{
-		"host": config.Conf.HostName,
-	})
 }
 
 func HTTPRegister(ctx context.Context, c *app.RequestContext) {
@@ -191,6 +184,11 @@ func getSecureIdFromHTTPRequest(c *app.RequestContext) (ClientSecureId, error) {
 		}
 	}
 	return secureId, nil
+}
+
+func wsUpgradeFailed(ctx context.Context, c *app.RequestContext) {
+	c.Response.ResetBody()
+	handler.HomeHandler(ctx, c)
 }
 
 func fail(ctx context.Context, c *app.RequestContext, context string, message string) {

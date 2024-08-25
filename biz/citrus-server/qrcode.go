@@ -1,6 +1,7 @@
 package citrus_server
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/yeqown/go-qrcode/v2"
@@ -28,7 +29,7 @@ func newQrcodeWriteCloser(w io.Writer) io.WriteCloser {
 }
 
 func sendDGAppBindingCode(bodyWriter io.Writer, host string, secureId ClientSecureId) error {
-	payload := DGAppWebsiteLink + "#" + DGAppWebsocketTag + "#wss://" + host + "/" + string(secureId)
+	payload := fmt.Sprintf("%s#%s#wss://%s/app/%s", DGAppWebsiteLink, DGAppWebsocketTag, host, secureId)
 	qrc, err := qrcode.New(payload)
 	if err != nil {
 		return err

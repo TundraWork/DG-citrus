@@ -17,9 +17,9 @@ Compared to the [official implementation](https://github.com/DG-LAB-OPENSOURCE/D
 ```bash
 git clone git@github.com:TundraWork/DG-citrus.git
 cd DG-citrus
-go mod download
+go mod tidy
 ./build.sh
-cp config.example.json config.json
+cp config.example.yaml config.yaml
 ./output/bootstrap.sh
 ```
 
@@ -37,7 +37,7 @@ cp config.example.json config.json
 
 The websocket API is compatible with the [official implementation](https://github.com/DG-LAB-OPENSOURCE/DG-LAB-OPENSOURCE).
 
-- DG-LAB App connections: `wss://<hostname>:<port>`
+- DG-LAB App connections: `wss://<hostname>:<port>/app/<client ID>`
 - Third party controller client connections: `wss://<hostname>:<port>/v1/ws`
 
 ### HTTP API

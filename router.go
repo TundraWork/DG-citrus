@@ -10,8 +10,10 @@ import (
 
 // customizeRegister registers customize routers.
 func customizedRegister(r *server.Hertz) {
-	r.GET("/", citrus_server.RootHandler)
+	r.GET("/", handler.HomeHandler)
 	r.GET("/ping", handler.Ping)
+
+	r.GET("/app/:uuid", citrus_server.DGAppHandler)
 
 	v1 := r.Group("/v1")
 	v1.GET("/ws", citrus_server.ThirdPartyWSHandler)
