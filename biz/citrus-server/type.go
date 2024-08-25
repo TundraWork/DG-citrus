@@ -169,6 +169,7 @@ func (e *EventBindResult) ToRawEvent() (*RawEvent, error) {
 	return &RawEvent{
 		Type:     EventTypeBind,
 		ClientId: string(e.ClientId),
+		TargetId: string(e.TargetId),
 		Message:  strconv.Itoa(e.Code),
 	}, nil
 }
