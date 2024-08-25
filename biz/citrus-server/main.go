@@ -260,6 +260,11 @@ func (server *CitrusServer) sendEvent(secureId ClientSecureId, event Event) erro
 		hlog.Errorf("sendEvent: Failed to convert event to raw event: %v", err)
 		return err
 	}
+	if client.typ == ClientTypeDGApp {
+		rawEvent.TargetId = string(secureId)
+	} else {
+		rawEvent.ClientId = string(secureId)
+	}
 	data, err := rawEvent.ToByteArray()
 	if err != nil {
 		return fmt.Errorf("sendEvent: Failed to serialize event: %v", err)
