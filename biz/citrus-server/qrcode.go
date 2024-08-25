@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/tundrawork/DG-citrus/config"
 	"github.com/yeqown/go-qrcode/v2"
 	"github.com/yeqown/go-qrcode/writer/standard"
 	"golang.org/x/image/colornames"
@@ -29,7 +30,13 @@ func newQrcodeWriteCloser(w io.Writer) io.WriteCloser {
 }
 
 func sendDGAppBindingCode(bodyWriter io.Writer, host string, secureId ClientSecureId) error {
-	payload := fmt.Sprintf("%s#%s#wss://%s/app/%s", DGAppWebsiteLink, DGAppWebsocketTag, host, secureId)
+	var protocol string
+	if config.Conf.UseSecureWebsocket {
+		protocol = "wss"
+	} else {
+		protocol = "ws"
+	}
+	payload := fmt.Sprintf("%s#%s#%s://%s/app/%s", DGAppWebsiteLink, DGAppWebsocketTag, protocol, host, secureId)
 	qrc, err := qrcode.New(payload)
 	if err != nil {
 		return err

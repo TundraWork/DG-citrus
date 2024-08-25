@@ -31,6 +31,7 @@ cp config.example.yaml config.yaml
 
 - `HostName`: The public accessible hostname of the server
 - `Port`: The port your server will listen on, for both HTTP and WebSocket connections
+- `UseSecureWebsocket`: Whether to use secure WebSocket connections (wss://), otherwise use insecure connections (ws://)
 - `AllowInsecureClientId`: Whether to allow clients to connect without a valid client ID, if this is set to `true`, the server will use only the IP address of a client to identify it. Useful for restricted coding environments.
 
 ### Websocket API
